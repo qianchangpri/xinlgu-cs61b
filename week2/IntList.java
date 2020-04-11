@@ -91,6 +91,20 @@ public class IntList {
     }
   }
 
+
+  /** Squre this list when adding a node*/
+  public void squareAdd(int x){
+    IntList p=this;
+    while(p.rest!=null){
+      int square=0;
+      square=p.first*p.first;
+      p.rest=new IntList(square,p.rest);
+      p=p.rest.rest;
+    }
+    p.rest=new IntList(p.first*p.first,p.rest);
+    p.rest.rest=new IntList(x,null);
+  }
+
   /** Print all members of this Intlist*/
   public void printall(){
     IntList p = this;
@@ -113,7 +127,9 @@ public class IntList {
     IntList LL=L.incrList(L, 3);
     System.out.println(LL.get(0)+" "+LL.get(1)+" "+LL.get(2));*/
     L.printall();
-    L.addAdjacent();
+    L.squareAdd(5);
+    L.printall();
+    L.squareAdd(7);
     L.printall();
     //System.out.println(L.get(0)+" "+L.get(1)+" "+L.get(2));
     //L.dincrList(L, 3);
