@@ -38,7 +38,7 @@ public class AList {
     }
 
     /** Insert x into the front of the list*/
-    
+
     /** Returns the number of items in the list. */
     public int size() {
         return size;

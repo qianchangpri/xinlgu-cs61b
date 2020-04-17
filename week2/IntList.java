@@ -115,22 +115,31 @@ public class IntList {
     System.out.println();
   }
 
+  public static Intlist squareDestructive(IntList L) {
+    if (L == null) {
+      return L;
+    }
+    L.first = L.first*L.first;
+    squareDestructive(L.rest);
+    return L;
+  }
+
   public static void main(String[] args) {
     IntList L=new IntList(2,null);
-    L=new IntList(1,L);
+    L=new IntList(3,L);
     //L=new IntList(1,L);
     //L=new IntList(1,L);
-    System.out.println(L.size());
+    //System.out.println(L.size());
     /*System.out.println(L.iterativeSize());
     System.out.println(L.get(1));
     System.out.println(L.iterativeGet(1));
     IntList LL=L.incrList(L, 3);
     System.out.println(LL.get(0)+" "+LL.get(1)+" "+LL.get(2));*/
+    //L.printall();
+    L.squareDestructive(L);
     L.printall();
-    L.squareAdd(5);
-    L.printall();
-    L.squareAdd(7);
-    L.printall();
+    //L.squareAdd(7);
+    //L.printall();
     //System.out.println(L.get(0)+" "+L.get(1)+" "+L.get(2));
     //L.dincrList(L, 3);
     //System.out.println(L.get(0)+" "+L.get(1)+" "+L.get(2));

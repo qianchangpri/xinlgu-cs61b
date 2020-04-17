@@ -60,6 +60,23 @@ public class SLList{
 		size+=1;
 	}
 
+	/** Insert item to certain position
+	  * Haven't been tested*/
+	public void insert(int item, int position) {
+		int i = 0;
+		IntNode p = this.first;
+		while (i<position-1) {
+			if (p.next == null){
+				break;
+			}
+			p = p.next;
+		}
+		IntNode newNode = new IntNode(item,p.next);
+		p.next = newNode;
+	}
+
+
+
 	/*private static int size(IntNode p){
 		if (p.next==null){
 			return 1;
