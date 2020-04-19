@@ -29,14 +29,14 @@ public class ArrayDeque<T> {
 
     /** add an isSparse method*/
     private  boolean isSparse() {
-        return items.length >=16 && size <= items.length * 0.25;
+        return items.length >= 16 && size <= items.length * 0.25;
     }
 
     /** Resizes the underlying array to the target capacity. */
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         int p = plusOne(nextFirst);
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             a[i] = items[p];
             p = plusOne(p);
         }
@@ -78,7 +78,7 @@ public class ArrayDeque<T> {
     /** print all item from the LinkedListDeque*/
     public void printDeque() {
         int p = plusOne(nextFirst);
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(items[p] + " ");
             p = plusOne(p);
         }
