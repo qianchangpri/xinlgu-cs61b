@@ -95,4 +95,17 @@ public class LinkedListDeque<T> {
             return p.item;
         }
     }
+
+    /** return the index th item, using recursive*/
+    private T getRecursive(int index, Node curr) {
+
+        if (index == 0) {
+            return curr.item;
+        }
+        return getRecursive(index - 1, curr.next);
+    }
+
+    public T getRecursive(int index) {
+        return getRecursive(index, sentinel.next);
+    }
 }
