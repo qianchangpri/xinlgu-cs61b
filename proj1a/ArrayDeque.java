@@ -89,6 +89,9 @@ public class ArrayDeque<T> {
         if (isSparse()) {
             resize(items.length / 2);
         }
+        if (isEmpty()) {
+            return null;
+        }
         nextFirst = plusOne(nextFirst);
         T removedItem = items[nextFirst];
         items[nextFirst] = null;
@@ -100,6 +103,9 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if (isSparse()) {
             resize(items.length / 2);
+        }
+        if (isEmpty()) {
+            return null;
         }
         nextLast = minusOne(nextLast);
         T removedItem = items[nextLast];
