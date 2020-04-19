@@ -92,6 +92,7 @@ public class ArrayDeque<T> {
         nextFirst = plusOne(nextFirst);
         T removedItem = items[nextFirst];
         items[nextFirst] = null;
+        size -= 1;
         return removedItem;
     }
 
@@ -103,6 +104,7 @@ public class ArrayDeque<T> {
         nextLast = minusOne(nextLast);
         T removedItem = items[nextLast];
         items[nextLast] = null;
+        size -= 1;
         return removedItem;
     }
 
