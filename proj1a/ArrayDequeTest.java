@@ -80,6 +80,7 @@ public class ArrayDequeTest {
         lld1.addLast(5);
         lld1.isEmpty();
         lld1.addLast(7);
+        //lld1.printDeque();
         lld1.addLast(0);
         //lld1.addLast(8);
         int a = lld1.get(0);
@@ -88,7 +89,7 @@ public class ArrayDequeTest {
         // should be empty
         //passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
-        printTestStatus(passed);
+        //printTestStatus(passed);
 
     }
 
