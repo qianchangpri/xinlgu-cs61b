@@ -69,13 +69,26 @@ public class LinkedListDequeTest {
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
-		lld1.addFirst(10);
+		//lld1.addFirst(10);
 		// should not be empty 
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
-		lld1.removeFirst();
+		lld1.addLast(0);
+		lld1.addLast(1);
+		lld1.addLast(2);
+		lld1.addLast(3);
+		lld1.addLast(4);
+		lld1.addLast(5);
+		lld1.isEmpty();
+		lld1.addLast(7);
+		lld1.addLast(8);
+		lld1.addLast(9);
+		lld1.addLast(10);
+		lld1.removeLast();
+
+		//lld1.removeFirst();
 		// should be empty 
-		passed = checkEmpty(true, lld1.isEmpty()) && passed;
+		//passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
 		printTestStatus(passed);
 
@@ -83,7 +96,7 @@ public class LinkedListDequeTest {
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
-		addIsEmptySizeTest();
+		//addIsEmptySizeTest();
 		addRemoveTest();
 	}
 } 
