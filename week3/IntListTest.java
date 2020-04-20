@@ -80,16 +80,18 @@ public class IntListTest {
     public void testSkippify() {
         IntList A = IntList.of(1, 2, 3, 4,5,6,7,8,9,10);
         IntList B = IntList.of(9,8,7,6,5,4,3,2,1);
+        //IntList C = IntList.of(1,2,3);
         //IntList reversed1 = IntList.reverse(A);
         //assertNotEquals(IntList.of(1, 2, 3), A);
         A.skippify();
         B.skippify();
+        //C.skippify();
         assertEquals(IntList.of(1,3,6,10), A);
         assertEquals(IntList.of(9,7,4), B);
     }
 
     /** If you're running this from the command line, you'll need
-      * to add a main method. See ArithmeticTest.java for an
-      * example. */
+     * to add a main method. See ArithmeticTest.java for an
+     * example. */
 
 }

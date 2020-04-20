@@ -11,11 +11,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    private int first;
+    public int first;
     /**
      * Remaining elements of list.
      */
-    private IntList rest;
+    public IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -72,51 +72,6 @@ public class IntList {
         return new IntList(L.first * L.first, squareListRecursive(L.rest));
     }
 
-    /**
-     * Returns the reverse of the given IntList.
-     * This method is destructive. If given null
-     * as an input, returns null.
-     */
-    public static IntList reverse(IntList A) {
-        if (A == null || A.rest == null) {
-            return A;
-        }
-        IntList p = reverse(A.rest);
-        A.rest.rest = A;
-        A.rest = null;
-        return p;
-        /*if (A==null || A.rest==null) {
-            return A;
-        }
-        IntList p = null;
-        IntList o = A;
-        while (o!=null) {
-            IntList q = o.rest;
-            o.rest = p;
-            p = o;
-            o = q;
-        }
-        return p;*/
-    }
-
-    public void skippify() {
-        IntList p =this;
-        int n=1;
-        while(p.rest!=null) {
-            IntList next = p;
-            for(int i=0; i<=n;i++) {
-                if (next.rest == null) {
-                    next = null;
-                } else {
-                    next = next.rest;
-                }
-            }
-            p.rest=next;
-            p=p.rest;
-            n+=1;
-        }
-    }
-
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
 
@@ -126,12 +81,11 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        /* IntList C=A;
-        while (C.rest!=null) {
-            C = C.rest;
-        }
-        C.rest=B;
-        return A;*/
+        //IntList C = A ;
+        // while (C.rest != null) {
+        //     C = C.rest;
+        // }
+        // C.rest = B ;
         if (A == null) {
             A = B;
             return A;
@@ -145,26 +99,36 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        IntList C = new IntList(A.first, null);
-        IntList P = C;
-        while (A.rest != null) {
-            P.rest = new IntList(A.rest.first, null);
-            P = P.rest;
-            A = A.rest;
-        }
-        P.rest = B;
-        return C;
-        /*if (A==null){
+        if (A == null) {
             return B;
         }
-        IntList C = new IntList(A.first,catenate(A.rest,B));
-        return C;*/
+        IntList S = new IntList(A.first, catenate(A.rest, B));
+        return S;
     }
 
 
 
 
 
+
+
+    public void skippify() {
+        IntList p = this;
+        int n = 1;
+        while (p != null) {
+            IntList next = p.rest;
+            for (int i = 0; i < n; i++) {
+                if (next == null) {
+                    break;
+                }
+                next = next.rest;
+            }
+            p.rest = next;
+            n += 1;
+            p = p.rest;
+        }
+
+    }
 
 
 
@@ -297,5 +261,22 @@ public class IntList {
         out.format(")");
         return out.toString();
     }
+
+    public static IntList reverse(IntList A) {
+        if (A == null){
+            return null;
+        }
+        if (A.rest == null){
+            return A;
+        }
+        IntList p = reverse(A.rest);
+        A.rest.rest= A;
+        A.rest=null;
+        return p;
+
+
+    }
+
+
 }
 

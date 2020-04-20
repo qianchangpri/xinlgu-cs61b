@@ -77,6 +77,7 @@ public class AList<Item> {
       for(int i=position;i<arr.length;i++) {
         result[i+1] = arr[i];
       }
+      return result;
     }
 
     public static void reverse(int[] arr) {
