@@ -106,12 +106,6 @@ public class IntList {
         return S;
     }
 
-
-
-
-
-
-
     public void skippify() {
         IntList p = this;
         int n = 1;
@@ -130,8 +124,27 @@ public class IntList {
 
     }
 
+    /**
+     * Given a sorted linked list of items - remove duplicates.
+     * For example given 1 -> 2 -> 2 -> 2 -> 3,
+     * Mutate it to become 1 -> 2 -> 3 (destructively)
+     */
+    public static void removeDuplicates(IntList p) {
+        if (p == null) {
+            return;
+        }
+        IntList current = p.rest;
+        IntList previous = p;
+        while (current != null) {
+            if (current.first == previous.first) {
+                previous.rest = current.rest;
+            } else {
+                previous = previous.rest;
+            }
+            current = current.rest;
+        }
 
-
+    }
 
 
 

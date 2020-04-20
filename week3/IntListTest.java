@@ -90,6 +90,13 @@ public class IntListTest {
         assertEquals(IntList.of(9,7,4), B);
     }
 
+    @Test(timeout = 1000)
+    public void testRemoveDup() {
+        IntList A = IntList.of(1, 2,2,2,3);
+        IntList.removeDuplicates(A);
+        assertEquals(IntList.of(1,2,3), A);
+    }
+
     /** If you're running this from the command line, you'll need
      * to add a main method. See ArithmeticTest.java for an
      * example. */
