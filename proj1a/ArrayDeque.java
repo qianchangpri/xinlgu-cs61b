@@ -25,11 +25,16 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
-        for (int i = nextFirst + 1, j = 0; i < nextLast; i = plusOne(i), j++) {
-            a[j] = items[i];
+        int p = plusOne(nextFirst);
+        for (int i = 0; i < size; i++) {
+            a[i] = items[p];
+            p = plusOne(p);
         }
         items = a;
+        nextFirst = items.length - 1;
+        nextLast = size;
     }
+
     public void addFirst(T x) {
         if (size == items.length) {
             resize(size * 2);
@@ -58,8 +63,10 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = nextFirst + 1; i < nextLast; i = plusOne(i)) {
-            System.out.print(items[i] + " ");
+        int i = plusOne(nextFirst);
+        while(i != nextLast) {
+            System.out.print(items[i]+" ");
+            i = plusOne(i);
         }
         System.out.println();
     }
