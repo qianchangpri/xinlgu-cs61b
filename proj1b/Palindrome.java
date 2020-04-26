@@ -1,8 +1,8 @@
-public class Palindrome{
+public class Palindrome {
     /*create first method to transfer word to a Deque*/
-    public Deque<Character> wordToDeque(String word){
+    public Deque<Character> wordToDeque(String word) {
         Deque<Character> words = new LinkedListDeque<>();
-        for (int i = 0; i<word.length(); i += 1) {
+        for (int i = 0; i < word.length(); i += 1) {
             words.addLast(word.charAt(i));
         }
         return words;
