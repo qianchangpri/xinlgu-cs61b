@@ -20,11 +20,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T>  {
     }
     private class KeyIterator implements Iterator<T> {
         private int ptr;
-        public KeyIterator() {ptr = 0;}
-        public boolean hasNext() {return ptr != fillCount;}
+        public KeyIterator() {ptr = first;}
+        public boolean hasNext() {return ptr != first + fillCount;}
         public T next() {
-            ptr += 1;
-            return rb[first + 1];
+            T returnItem = rb[ptr % capacity];
+            ptr = ptr + 1 ;
+            return returnItem;
         }
     }
 

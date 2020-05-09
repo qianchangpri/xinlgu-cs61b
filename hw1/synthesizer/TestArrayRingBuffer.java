@@ -22,6 +22,9 @@ public class TestArrayRingBuffer {
         assertEquals(1, (long) x);
         arb.enqueue(19);
         assertEquals(4, arb.fillCount());
+        for (Integer arb1 : arb) {
+                System.out.println("item: " + arb1);
+            }
     }
 
     /** Calls tests for ArrayRingBuffer. */
