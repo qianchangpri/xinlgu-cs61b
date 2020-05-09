@@ -1,4 +1,5 @@
 package synthesizer;
+import edu.princeton.cs.algs4.In;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -9,7 +10,18 @@ import static org.junit.Assert.*;
 public class TestArrayRingBuffer {
     @Test
     public void someTest() {
-        //ArrayRingBuffer arb = new ArrayRingBuffer(10);
+        ArrayRingBuffer<Integer> arb = new ArrayRingBuffer(4);
+        assertEquals(true, arb.isEmpty());
+        arb.enqueue(1);
+        arb.enqueue(2);
+        assertEquals(false, arb.isFull());
+        arb.enqueue(6);
+        arb.enqueue(5);
+        assertEquals(true, arb.isFull());
+        Integer x = arb.dequeue();
+        assertEquals(1, (long) x);
+        arb.enqueue(19);
+        assertEquals(4, arb.fillCount());
     }
 
     /** Calls tests for ArrayRingBuffer. */
