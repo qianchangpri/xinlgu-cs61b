@@ -3,14 +3,14 @@ package hw2;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-    int len;
-    int numOfOpenSites = 0;
-    int size;
-    int virtualTop = 0;
-    int virtualBottom;
-    boolean[] openness;
-    WeightedQuickUnionUF set;
-    WeightedQuickUnionUF backwash;
+    private int len;
+    private int numOfOpenSites = 0;
+    private int size;
+    private int virtualTop = 0;
+    private int virtualBottom;
+    private boolean[] openness;
+    private WeightedQuickUnionUF set;
+    private WeightedQuickUnionUF backwash;
 
     public Percolation(int N) {
         this.len = N;
@@ -71,7 +71,7 @@ public class Percolation {
     public boolean percolates() {
         return set.connected(virtualTop, virtualBottom);
     }             // does the system percolate?
-    public static void main(String[] args) {
+    private static void main(String[] args) {
         Percolation perc = new Percolation(3);
         perc.open(1,2);
         perc.open(2,2);

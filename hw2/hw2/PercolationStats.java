@@ -20,7 +20,7 @@ public class PercolationStats {
                 int col = StdRandom.uniform(N);
                 perc.open(row, col);
             }
-            fractions[i] = (double) perc.numOfOpenSites / (N * N);
+            fractions[i] = (double) perc.numberOfOpenSites() / (N * N);
         }
     }  // perform T independent experiments on an N-by-N grid
     public double mean() {
