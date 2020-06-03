@@ -71,7 +71,7 @@ public class Percolation {
     public boolean percolates() {
         return set.connected(virtualTop, virtualBottom);
     }             // does the system percolate?
-    private static void main(String[] args) {
+    public static void main(String[] args) {
         Percolation perc = new Percolation(3);
         perc.open(1,2);
         perc.open(2,2);

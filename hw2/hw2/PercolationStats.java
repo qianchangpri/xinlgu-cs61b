@@ -4,8 +4,8 @@ import edu.princeton.cs.introcs.StdRandom;
 import edu.princeton.cs.introcs.StdStats;
 
 public class PercolationStats {
-    public int numOfexperiments;
-    public double[] fractions;
+    private int numOfexperiments;
+    private double[] fractions;
 
     public PercolationStats(int N, int T, PercolationFactory pf) {
         if (N <= 0 | T <= 0) {
@@ -40,7 +40,7 @@ public class PercolationStats {
         return mu + 1.96 * sigma / Math.sqrt(numOfexperiments);
     }                                // high endpoint of 95% confidence interval
 
-    public static void main(String[] args) {
+    private static void main(String[] args) {
         PercolationFactory pf = new PercolationFactory();
         PercolationStats perc = new PercolationStats(10, 100, pf);
         System.out.println(perc.mean());
