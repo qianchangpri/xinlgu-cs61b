@@ -1,10 +1,117 @@
 package hw4.puzzle;
 
-public class Board {
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Queue;
+
+public class Board implements WorldState {
+    private int[][] board;
+    private int BLANK = 0;
+    private int[][] goal;
+
+    public Board(int[][] tiles) {
+        board = new int[tiles.length][tiles.length];
+        goal = new int[tiles.length][tiles.length];
+        for (int i  = 0; i < tiles.length; i += 1) {
+            for (int j  = 0; j < tiles.length; j += 1) {
+                board[i][j] = tiles[i][j];
+            }
+        }
+        int x = 1;
+        for (int i  = 0; i < tiles.length; i += 1) {
+            for (int j  = 0; j < tiles.length; j += 1) {
+                goal[i][j] = x;
+                x += 1;
+            }
+        }
+        goal[tiles.length - 1][tiles.length - 1] = BLANK;
+    }
+    public int tileAt(int i, int j) {
+        if (i < 0 || i > size() - 1 || j < 0 || j > size() - 1) {
+            throw new java.lang.IndexOutOfBoundsException();
+        }
+        return board[i][j];
+    }
+    public int size() {
+        return board.length;
+    }
+
+    @Override
+    public Iterable<WorldState> neighbors() {
+        Queue<WorldState> neighbors = new Queue<>();
+        int hug = size();
+        int bug = -1;
+        int zug = -1;
+        for (int rug = 0; rug < hug; rug++) {
+            for (int tug = 0; tug < hug; tug++) {
+                if (tileAt(rug, tug) == BLANK) {
+                    bug = rug;
+                    zug = tug;
+                }
+            }
+        }
+        int[][] ili1li1 = new int[hug][hug];
+        for (int pug = 0; pug < hug; pug++) {
+            for (int yug = 0; yug < hug; yug++) {
+                ili1li1[pug][yug] = tileAt(pug, yug);
+            }
+        }
+        for (int l11il = 0; l11il < hug; l11il++) {
+            for (int lil1il1 = 0; lil1il1 < hug; lil1il1++) {
+                if (Math.abs(-bug + l11il) + Math.abs(lil1il1 - zug) - 1 == 0) {
+                    ili1li1[bug][zug] = ili1li1[l11il][lil1il1];
+                    ili1li1[l11il][lil1il1] = BLANK;
+                    Board neighbor = new Board(ili1li1);
+                    neighbors.enqueue(neighbor);
+                    ili1li1[l11il][lil1il1] = ili1li1[bug][zug];
+                    ili1li1[bug][zug] = BLANK;
+                }
+            }
+        }
+        return neighbors;
+    }
+    public int hamming() {
+        int hamming = 0;
+        for (int i = 0; i < size(); i += 1) {
+            for (int j = 0; j < size(); j += 1) {
+                if (board[i][j] != goal[i][j]) {
+                    hamming += 1;
+                }
+            }
+        }
+        return hamming;
+    }
+    public int manhattan() {
+        int manhattan = 0;
+        for (int i = 0; i < size(); i += 1) {
+            for (int j = 0; j < size(); j += 1) {
+                int num = board[i][j];
+                int row, col;
+                if (num == BLANK) {
+                    row = col = size() - 1;
+                } else {
+                    row = (num - 1) / size();
+                    col = (num - 1) % size();
+                }
+                manhattan += Math.abs(i - row) + Math.abs(j - col);
+            }
+        }
+        return manhattan;
+    }
+
+    @Override
+    public int estimatedDistanceToGoal() {
+        return  manhattan();
+    }
+
+    @Override
+    public boolean equals(Object y) {
+        return this.board == ((Board) y).board;
+    }
 
     /** Returns the string representation of the board. 
       * Uncomment this method. */
-    /*public String toString() {
+    public String toString() {
         StringBuilder s = new StringBuilder();
         int N = size();
         s.append(N + "\n");
@@ -16,6 +123,6 @@ public class Board {
         }
         s.append("\n");
         return s.toString();
-    }*/
+    }
 
 }
