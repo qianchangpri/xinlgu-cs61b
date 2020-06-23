@@ -74,7 +74,7 @@ public class Board implements WorldState {
         int hamming = 0;
         for (int i = 0; i < size(); i += 1) {
             for (int j = 0; j < size(); j += 1) {
-                if (board[i][j] != goal[i][j]) {
+                if (board[i][j] != BLANK && board[i][j] != goal[i][j]) {
                     hamming += 1;
                 }
             }
@@ -88,7 +88,7 @@ public class Board implements WorldState {
                 int num = board[i][j];
                 int row, col;
                 if (num == BLANK) {
-                    row = col = size() - 1;
+                    continue;
                 } else {
                     row = (num - 1) / size();
                     col = (num - 1) % size();
@@ -106,7 +106,15 @@ public class Board implements WorldState {
 
     @Override
     public boolean equals(Object y) {
-        return this.board == ((Board) y).board;
+        Board yy = (Board) y;
+        for (int i = 0; i < size(); i += 1) {
+            for (int j = 0; j < size(); j += 1) {
+                if (this.board[i][j] != yy.board[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /** Returns the string representation of the board. 
