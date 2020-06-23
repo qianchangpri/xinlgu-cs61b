@@ -106,10 +106,12 @@ public class Board implements WorldState {
 
     @Override
     public boolean equals(Object y) {
-        Board yy = (Board) y;
+        if (this.board.length != ((Board) y).board.length) {
+            return false;
+        }
         for (int i = 0; i < size(); i += 1) {
             for (int j = 0; j < size(); j += 1) {
-                if (this.board[i][j] != yy.board[i][j]) {
+                if (this.board[i][j] != ((Board) y).board[i][j]) {
                     return false;
                 }
             }
