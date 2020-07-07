@@ -48,12 +48,44 @@ public class QuickSort {
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
+        for (Item item : unsorted) {
+            if (item.compareTo(pivot) < 0) {
+                less.enqueue(item);
+            } else if (item.compareTo(pivot) == 0) {
+                equal.enqueue(item);
+            } else if (item.compareTo(pivot) > 0) {
+                greater.enqueue(item);
+            }
+        }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        if (items.size() <= 1) {
+            return items;
+        }
+        Item pivot = getRandomItem(items);
+        Queue<Item> less = new Queue<>();
+        Queue<Item> equal = new Queue<>();
+        Queue<Item> greater = new Queue<>();
+
+        partition(items,pivot,less,equal,greater);
+        less = quickSort(less);
+        greater = quickSort(greater);
+        less = catenate(less,equal);
+        greater = catenate(less, greater);
+        return greater;
+    }
+    public static void main(String[] args) {
+        Queue<Integer> q = new Queue<>();
+        q.enqueue(3);
+        q.enqueue(2);
+        q.enqueue(7);
+        q.enqueue(1);
+        System.out.println(q);
+        Queue<Integer> sorted = QuickSort.quickSort(q);
+        System.out.println(sorted);
     }
 }
